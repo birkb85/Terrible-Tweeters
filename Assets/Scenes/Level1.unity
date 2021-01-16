@@ -853,6 +853,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelController
       objectReference: {fileID: 0}
+    - target: {fileID: 5233093024121439854, guid: 5e314308bf0e68c43ad8f0fba9728924, type: 3}
+      propertyPath: _nextLevelName
+      value: Level2
+      objectReference: {fileID: 0}
     - target: {fileID: 5233093024121439855, guid: 5e314308bf0e68c43ad8f0fba9728924, type: 3}
       propertyPath: m_RootOrder
       value: 7
