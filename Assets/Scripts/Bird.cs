@@ -12,7 +12,7 @@ public class Bird : MonoBehaviour
     SpriteRenderer _spriteRenderer;
 
     Vector2 _startPosition;
-    bool _doReset = false;
+    bool _allowReset = false;
 
     void Awake()
     {
@@ -29,12 +29,13 @@ public class Bird : MonoBehaviour
 
     void OnMouseDown()
     {
-        _doReset = false;
         _spriteRenderer.color = Color.red;
     }
 
     void OnMouseUp()
     {
+        _allowReset = true;
+
         var currentPosition = _rigidbody2D.position;
         Vector2 direction = _startPosition - currentPosition;
         //Debug.Log("Direction before " + direction);
@@ -74,7 +75,7 @@ public class Bird : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (_doReset)
+        if (!_allowReset)
             return;
 
         StartCoroutine(ResetAfterDelay());
@@ -82,7 +83,7 @@ public class Bird : MonoBehaviour
 
     IEnumerator ResetAfterDelay()
     {
-        _doReset = true;
+        _allowReset = false;
         yield return new WaitForSeconds(3);
         _rigidbody2D.position = _startPosition;
         _rigidbody2D.isKinematic = true;
